@@ -1,3 +1,21 @@
-# English strings go here for Rails i18n
 en:
   label_resources_management: Resources Managment
+  label_name: Device Name
+  label_owner: Owner
+  label_date_from: Date From
+  label_date_to: Date To
+  label_picture: Picture
+  label_rental_history: Jorunal of loans
+  label_device_list: Devices list
+  field_owner: Owner
+  field_date_from: Date from
+  field_date_to: Date to
+  field_picture: Picture 
+  allowed_to_manage_devices: "Groups allowed to manage devices:"
+  activerecord:
+    errors:
+      models:
+        device:
+          attributes:
+            date_to: 
+              date_to_greater_then_dato_from: Date to must be greater then date from

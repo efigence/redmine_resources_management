@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<h3><%= @device.id %></h3>
+<div class="box tabular">
+  <table class="attributes">
+    <%= device_fields_rows do |rows|
+      rows.left l(:field_picture), h(image_tag @device.picture.url(:thumb))
+      rows.left l(:field_name), h(@device.name)
+      rows.right l(:field_owner), h(@device.owner)
+      rows.right l(:field_date_from), h(@device.date_from), :class => 'start-date'
+      rows.right l(:field_date_to), h(@device.date_to), :class => 'due-date'
+    end %> 
+  </table>
+</div>
+
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>

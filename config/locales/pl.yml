@@ -1,2 +1,21 @@
 pl:
   label_resources_management: Zarządzanie Zasobami
+  label_name: Nazwa Urządzenia
+  label_owner: Właściciel
+  label_date_from: Data od
+  label_date_to: Data do
+  label_picture: Zdjęcie
+  label_rental_history: Dziennik wypożyczeń
+  label_device_list: Lista urządzeń
+  field_owner: Właściciel
+  field_date_from: Data od
+  field_date_to: Data do
+  field_picture: Zdjęcie
+  allowed_to_manage_devices: "Grupy uprawnione do zarządzania urządzeniami:"
+  activerecord:
+    errors:
+      models:
+        device:
+          attributes:
+            date_to: 
+              date_to_greater_then_dato_from: Data do musi być wieksza niż data do

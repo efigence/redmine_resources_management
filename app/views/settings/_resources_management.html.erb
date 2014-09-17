@@ -1,1 +1,7 @@
-<h1>Resource Settings</h1>
+<p>
+  <label for="allowed_to_manage_devices"><%=l(:allowed_to_manage_devices)%></label>
+    <%= select_tag "settings[groups][]",
+    options_from_collection_for_select(Group.all.sort, 'id', 'lastname',
+    Setting.plugin_redmine_resources_management[:groups]
+    ), :multiple => true, :id => "groups" %>
+</p>

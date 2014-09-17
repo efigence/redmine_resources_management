@@ -1,1 +1,38 @@
-<h1>blblalalalsldlalsda</h1>
+<h1><%= l(:label_device_list) %></h1>
+
+<% if @devices.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+
+<table class="list issues">
+  <tr>
+    <th>#</th>
+    <th><%= l(:label_picture)%></th>
+    <th><%= l(:label_name)%></th>
+    <th><%= l(:label_owner)%></th>
+    <th><%= l(:label_date_from)%></th>
+    <th><%= l(:label_date_to)%></th>
+    <th><%= l(:label_rental_history)%></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @devices.each do |device| %>
+  <tr>
+    <td><%= device.id %></td>
+    <td><%= image_tag device.picture.url(:thumb) %></td>
+    <td><%= link_to device.name, device %></td>
+    <td><%= device.owner %></td>
+    <td><%= device.date_from %></td>
+    <td><%= device.date_to %></td>
+    <td><%= link_to 'Details', device %></td> 
+    <td><%= link_to 'Edit', edit_device_path(device), :class => 'icon icon-edit' %></td>
+    <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'icon icon-del' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Device', new_device_path, :class => 'icon icon-add' %>
+<% end %>
