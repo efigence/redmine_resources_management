@@ -1,3 +1,0 @@
-= redmine_resources_management
-
-Description goes here
