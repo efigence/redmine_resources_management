@@ -1,11 +1,12 @@
 class DevicesController < ApplicationController
   
+  before_filter :check_permissions, :only => [:new, :edit, :destroy, :create, :update]
+  
   def index
     @devices = Device.all
 
     respond_to do |format|
       format.html
-      format.json { render json: @devices }
     end
   end
 
@@ -17,8 +18,7 @@ class DevicesController < ApplicationController
     @device = Device.new
 
     respond_to do |format|
-      format.html 
-      format.json { render json: @device }
+      format.html
     end
   end
 
@@ -32,10 +32,8 @@ class DevicesController < ApplicationController
     respond_to do |format|
       if @device.save
         format.html { redirect_to @device, notice: 'Device was successfully created.' }
-        format.json { render json: @device, status: :created, location: @device }
       else
         format.html { render action: "new" }
-        format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,10 +44,8 @@ class DevicesController < ApplicationController
     respond_to do |format|
       if @device.update_attributes(params[:device])
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +56,24 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to devices_url }
-      format.json { head :no_content }
     end
+  end
+
+  private
+
+  def check_permissions
+    deny_access unless User.current.admin? || has_access?
+  end
+
+  def has_access?
+    !(user_ids & groups_with_access).blank?
+  end
+
+  def user_ids
+    User.current.groups.select('id').collect{|el| el.id.to_s}
+  end
+
+  def groups_with_access
+    Setting.plugin_redmine_resources_management[:groups] || []
   end
 end
