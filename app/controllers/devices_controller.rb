@@ -12,6 +12,8 @@ class DevicesController < ApplicationController
 
   def show
     @device = Device.find(params[:id])
+    @loan = Loan.new
+    @loan.device_id = @device.id
   end
 
   def new
@@ -26,14 +28,36 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
   end
 
+  def create_loan
+    @loan = Loan.new(params[:loan])
+    @loan.device_id = params[:device_id]
+
+    if @loan.save
+      @loan.device.change_status!
+      redirect_to device_path(@loan.device)
+    else 
+      @device = @loan.device
+      render :action => :show
+    end
+  end
+
+  def return
+    @device = Device.find(params[:device_id])
+    @loan = Loan.find(params[:id])
+    @loan.return!
+    redirect_to device_path(@loan.device)
+  end
+
   def create
     @device = Device.new(params[:device])
 
     respond_to do |format|
-      if @device.save
-        format.html { redirect_to @device, notice: 'Device was successfully created.' }
-      else
-        format.html { render action: "new" }
+      format.html do
+        if @device.save
+          redirect_to @device, notice: 'Device was successfully created.' 
+        else
+          render action: "new" 
+        end
       end
     end
   end

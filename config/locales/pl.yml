@@ -2,20 +2,28 @@ pl:
   label_resources_management: Zarządzanie Zasobami
   label_name: Nazwa Urządzenia
   label_owner: Właściciel
-  label_date_from: Data od
-  label_date_to: Data do
   label_picture: Zdjęcie
   label_rental_history: Dziennik wypożyczeń
   label_device_list: Lista urządzeń
   field_owner: Właściciel
-  field_date_from: Data od
-  field_date_to: Data do
+  field_date_from: Dostępne od
+  field_date_to: Dostępne do
   field_picture: Zdjęcie
+  field_borrower_name: Wypożyczający
+  field_date_of_hire: Data wypożyczenia
+  field_device_id: Urządzenie
+  field_date_of_return: Data zwrotu
+  label_already_hired: To urządzenie jest aktualnie wypożyczone!
   allowed_to_manage_devices: "Grupy uprawnione do zarządzania urządzeniami:"
   activerecord:
     errors:
       models:
+        loan:
+          attributes:
+            date_of_return: 
+              greater_then_date_of_hire: musi być wieksza niż data wypożyczenia
+              less_then_avalible_date: nie może być większa od daty dostępności!
         device:
           attributes:
             date_to: 
-              date_to_greater_then_dato_from: Data do musi być wieksza niż data do
+              date_to_greater_then_dato_from: musi być wieksza niż data do

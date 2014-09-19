@@ -8,14 +8,26 @@ en:
   label_rental_history: Jorunal of loans
   label_device_list: Devices list
   field_owner: Owner
-  field_date_from: Date from
-  field_date_to: Date to
-  field_picture: Picture 
+  field_date_from: Available from
+  field_date_to: Available to
+  field_picture: Picture
+  field_borrower_name: Borrower name
+  field_date_of_hire: Date of hire
+  field_device_id: Device
+  field_date_of_return: Date of return
+  field_hire: Hired
+  field_returned: Returned
+  label_already_hired: This device is already rented!
   allowed_to_manage_devices: "Groups allowed to manage devices:"
   activerecord:
     errors:
       models:
+        loan:
+          attributes:
+            date_of_return: 
+              greater_then_date_of_hire: must be greater then date of hire
+              less_then_avalible_date: can not be greater then available date!
         device:
           attributes:
             date_to: 
-              date_to_greater_then_dato_from: Date to must be greater then date from
+              date_to_greater_then_dato_from: must be greater then date from

@@ -1,0 +1,25 @@
+<%= error_messages_for @loan %>
+<% if @device.status == Loan::STATUS[:unavailable] %>
+ <p class="nodata"><%= l(:label_already_hired) %></p>
+<% else %>
+<div class="box tabular">
+  <%= labelled_form_for @loan, :url => device_create_loan_url(@device) do |f| %>
+    <p>
+      <%= f.select :borrower_name, options_from_collection_for_select(User.sorted, :name, :name), :include_blank => true %>
+    </p>
+    <p>
+      <%= f.text_field :date_of_hire, :value => Date.today %>
+      <%= calendar_for('loan_date_of_hire') %>
+    </p>
+    <p>
+      <%= f.label :date_of_return %>
+      <%= f.datetime_select :date_of_return, :include_blank => true %>
+    </p>
+      <%= f.hidden_field :status, :value => Loan::STATUS[:unavailable] %>
+     <p>
+      <%= f.submit "Rent" %>
+    </p>
+  <% end %>
+</div>
+<% include_calendar_headers_tags %>
+<% end %>
