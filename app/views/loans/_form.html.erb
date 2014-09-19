@@ -4,22 +4,29 @@
 <% else %>
 <div class="box tabular">
   <%= labelled_form_for @loan, :url => device_create_loan_url(@device) do |f| %>
-    <p>
-      <%= f.select :borrower_name, options_from_collection_for_select(User.sorted, :name, :name), :include_blank => true %>
+    <p class="borrower_name_wrapper">
+      <%= f.select :borrower_name, options_from_collection_for_select(User.sorted, :name, :name), 
+        {:include_blank => true}, { class: 'chosen'} %>
     </p>
     <p>
-      <%= f.text_field :date_of_hire, :value => Date.today, :autocomplete => :off %>
-      <%= calendar_for('loan_date_of_hire') %>
+      <%= f.text_field :date_of_hire, :value => Date.today, :autocomplete => :off, :class => :datepicker %>
     </p>
     <p>
       <%= f.label :date_of_return %>
-      <%= f.datetime_select :date_of_return, :include_blank => true %>
+      <%= f.text_field :date_of_return,:autocomplete => :off, :class => :datetimepicker %>
     </p>
       <%= f.hidden_field :status, :value => Loan::STATUS[:unavailable] %>
      <p>
-      <%= f.submit "Rent" %>
+      <%= f.submit t("helpers.submit.create") %>
     </p>
   <% end %>
 </div>
-<% include_calendar_headers_tags %>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'application.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+  <%= stylesheet_link_tag 'jquery.datetimepicker.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+  <%= stylesheet_link_tag 'chosen.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+  <%= javascript_include_tag 'application.js', :plugin => 'redmine_resources_management' %>
+  <%= javascript_include_tag 'jquery.datetimepicker.js', :plugin => 'redmine_resources_management' %>
+  <%= javascript_include_tag 'chosen.jquery.min.js', :plugin => 'redmine_resources_management' %>
+<% end %>
 <% end %>

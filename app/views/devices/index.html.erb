@@ -26,8 +26,8 @@
     <tr>
       <td><%= device.id %></td>
       <td><%= image_tag device.picture.url(:thumb) %></td>
-      <td><b><%= link_to device.name, device %></b></td>
-      <td><%= device.owner %></td>
+      <td><b><%= link_to device.name.truncate(20), device, {:title => device.name } %></b></td>
+      <td><%= device.owner.truncate(25) %></td>
       <td><%= device.date_from %></td>
       <td><%= device.date_to %></td>
       <td><%= device.status %></td>

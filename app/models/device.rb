@@ -9,11 +9,16 @@ class Device < ActiveRecord::Base
   has_attached_file :picture, :styles => { :thumb => "100x100>", :medium => "200x200" }, :default_url => "/images/:style/missing.png"
   
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+  validates_length_of :name, :owner, {:maximum => 200}
   validates_presence_of :name, :owner
   validate :valid_date_to
   
   def set_default_status
-    self.status = "Now Available"
+    if self.date_from && self.date_from > Date.today 
+      self.status = "Not available yet"
+    else
+      self.status = "Now Available"
+    end
     self.save
   end
 

@@ -16,8 +16,7 @@ class Loan < ActiveRecord::Base
     dev.loan_date = nil
     dev.loans_name = nil
     self.status = STATUS[:available]
-    self.date_of_return = Time.current.to_datetime.to_formatted_s(:long)
-
+    self.date_of_return = Time.now
     dev.save
     self.save
   end
@@ -31,13 +30,13 @@ class Loan < ActiveRecord::Base
   end
 
   def time_of_hire
-    unless !date_of_return
-      dev = Device.find(self.device_id)
-      if dev.date_to < self.date_of_return.to_date
-        errors.add :date_of_return, :less_then_avalible_date
+    dev = Device.find(self.device_id)
+    unless dev.date_to.blank?
+      unless !date_of_return 
+        if dev.date_to < self.date_of_return.to_date
+          errors.add :date_of_return, :less_then_avalible_date
+        end
       end
     end
   end
-
-
 end
