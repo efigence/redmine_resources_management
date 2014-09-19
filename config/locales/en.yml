@@ -7,6 +7,7 @@ en:
   label_picture: Picture
   label_rental_history: Jorunal of rents
   label_device_list: Devices list
+  label_actions: Actions
   field_owner: Owner
   field_date_from: Available from
   field_date_to: Available to
@@ -17,6 +18,8 @@ en:
   field_date_of_return: Date of return
   field_hire: Hired
   field_returned: Returned
+  field_who: Currently rented
+  field_have_to_date: On loan to
   label_already_hired: This device is already rented!
   number_of_devices_per_page: Number of devices per page
   allowed_to_manage_devices: "Groups allowed to manage devices:"

@@ -8,7 +8,7 @@
       <%= f.select :borrower_name, options_from_collection_for_select(User.sorted, :name, :name), :include_blank => true %>
     </p>
     <p>
-      <%= f.text_field :date_of_hire, :value => Date.today %>
+      <%= f.text_field :date_of_hire, :value => Date.today, :autocomplete => :off %>
       <%= calendar_for('loan_date_of_hire') %>
     </p>
     <p>

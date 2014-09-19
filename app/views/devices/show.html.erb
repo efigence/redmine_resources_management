@@ -5,11 +5,11 @@
 <div class="box tabular">
   <table class="attributes">
     <%= device_fields_rows do |rows|
-      rows.left l(:field_picture), h(image_tag @device.picture.url(:thumb))
       rows.left l(:field_name), h(@device.name)
-      rows.right l(:field_owner), h(@device.owner)
-      rows.right l(:field_date_from), h(@device.date_from), :class => 'start-date'
-      rows.right l(:field_date_to), h(@device.date_to), :class => 'due-date'
+      rows.left l(:field_owner), h(@device.owner)
+      rows.left l(:field_date_from), h(@device.date_from), :class => 'start-date'
+      rows.left l(:field_date_to), h(@device.date_to), :class => 'due-date'
+      rows.right l(:field_picture), h(image_tag @device.picture.url(:medium)), rowspan: 4
     end %> 
   </table>
 </div>

@@ -4,14 +4,14 @@
 
   <%= labelled_form_for(@device) do |f| %>
 
-    <p><%= f.text_field :name %></p>
-    <p><%= f.text_field :owner %></p>
+    <p><%= f.text_field :name, :autocomplete => :off %></p>
+    <p><%= f.text_field :owner, :autocomplete => :off %></p>
     <p>
-      <%= f.text_field :date_from %>
+      <%= f.text_field :date_from, :autocomplete => :off %>
       <%= calendar_for('device_date_from') %>
     </p>
     <p>
-      <%= f.text_field :date_to %>
+      <%= f.text_field :date_to, :autocomplete => :off %>
       <%= calendar_for('device_date_to') %>
     </p>
     <p><%= f.file_field :picture %></p>

@@ -13,8 +13,11 @@ class Loan < ActiveRecord::Base
   def return!
     dev = Device.find(self.device_id)
     dev.status = STATUS[:available]
+    dev.loan_date = nil
+    dev.loans_name = nil
     self.status = STATUS[:available]
     self.date_of_return = Time.current.to_datetime.to_formatted_s(:long)
+
     dev.save
     self.save
   end

@@ -5,6 +5,7 @@ pl:
   label_picture: Zdjęcie
   label_rental_history: Dziennik wypożyczeń
   label_device_list: Lista urządzeń
+  label_actions: Akcje
   field_owner: Właściciel
   field_date_from: Dostępne od
   field_date_to: Dostępne do
@@ -16,6 +17,8 @@ pl:
   label_already_hired: To urządzenie jest aktualnie wypożyczone!
   allowed_to_manage_devices: "Grupy uprawnione do zarządzania urządzeniami:"
   number_of_devices_per_page: Liczba urządzeń na stronie
+  field_who: Aktualnie wypożyczył
+  field_have_to_date: Wypożyczone do
   activerecord:
     errors:
       models:

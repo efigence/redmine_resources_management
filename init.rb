@@ -9,6 +9,10 @@ Redmine::Plugin.register :redmine_resources_management do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 
-  menu :top_menu, :devices, { :controller => 'devices', :action => 'index' }, :caption => :label_resources_management
+  menu :top_menu, :devices, { :controller => 'devices', :action => 'index' }, :caption => :label_resources_management,
+    :if => proc {
+      User.current.admin? ||
+      !(User.current.groups.pluck(:id).map(&:to_s) & (Setting.plugin_redmine_resources_management['groups'] || [])).blank?
+    }
   settings :default => {'empty' => true}, :partial => 'settings/resources_management'
 end
