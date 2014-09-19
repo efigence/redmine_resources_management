@@ -15,6 +15,7 @@ pl:
   field_date_of_return: Data zwrotu
   label_already_hired: To urządzenie jest aktualnie wypożyczone!
   allowed_to_manage_devices: "Grupy uprawnione do zarządzania urządzeniami:"
+  number_of_devices_per_page: Liczba urządzeń na stronie
   activerecord:
     errors:
       models:

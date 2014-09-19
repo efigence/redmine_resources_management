@@ -5,3 +5,7 @@
     Setting.plugin_redmine_resources_management[:groups]
     ), :multiple => true, :id => "groups" %>
 </p>
+<p>
+  <label for="number_of_devices_per_page"><%=l(:number_of_devices_per_page)%></label>
+    <%= text_field_tag "settings[per_page]", @settings['per_page']%>
+</p>

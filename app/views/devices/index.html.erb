@@ -4,7 +4,10 @@
 <% if @devices.empty? %>
   <p class="nodata"><%= l(:label_no_data) %></p>
 <% else %>
-
+  <%= form_tag devices_path, :method => :get do |f| %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
   <table class="list issues">
     <tr>
       <th>#</th>
@@ -35,4 +38,6 @@
 
 <br />
 <% end %>
+
+<%= will_paginate @devices %>
 <div class="contextual"><%= link_to 'New Device', new_device_path, :class => 'icon icon-add' %></div>

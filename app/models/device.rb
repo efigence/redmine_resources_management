@@ -23,4 +23,12 @@ class Device < ActiveRecord::Base
     self.status = Loan::STATUS[:unavailable]
     self.save
   end
+
+  def self.search search
+    if search
+      where('name LIKE ?', "%#{search}")
+    else 
+      where('')
+    end
+  end
 end
