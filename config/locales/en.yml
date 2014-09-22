@@ -24,9 +24,6 @@ en:
   number_of_devices_per_page: Number of devices per page
   allowed_to_manage_devices: "Groups allowed to manage devices:"
   label_unavailable: Device is not available to rent yet
-  helpers:
-    submit:
-      create: Rent
   activerecord:
     errors:
       models:
