@@ -20,6 +20,13 @@ pl:
   field_who: Aktualnie wypożyczył
   field_have_to_date: Wypożyczone do
   label_unavailable: Urządzenie nie można jeszcze wypożyczyć!
+  status_returned: Zwrócony
+  status_rented: Wypożyczony
+  helpers:
+    resources_management:
+      submit:
+        create_rent: Wypożycz
+        create: Stwórz
   activerecord:
     errors:
       models:

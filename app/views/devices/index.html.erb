@@ -30,7 +30,13 @@
       <td><%= device.owner.truncate(25) %></td>
       <td><%= device.date_from %></td>
       <td><%= device.date_to %></td>
-      <td><%= device.status %></td>
+        <% if device.status == Loan::STATUS[:available] %>
+          <td><%= l(:status_returned) %></td>
+        <% elsif device.status == Loan::STATUS[:unavailable] %>
+        <td><%= l(:status_rented) %></td>
+        <% else %>
+        <td><%= device.status %></td>
+        <% end %>
       <td><%= device.loans_name %></td>
       <td><%= device.loan_date %></td>
       <td><%= link_to '', edit_device_path(device), :class => 'icon icon-edit' %> | 
