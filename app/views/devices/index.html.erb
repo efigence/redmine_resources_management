@@ -34,6 +34,10 @@
           <td><%= l(:status_returned) %></td>
         <% elsif device.status == Loan::STATUS[:unavailable] %>
         <td><%= l(:status_rented) %></td>
+        <% elsif device.status == "Not available yet" %>
+        <td><%= l(:status_not_available)%></td>
+        <% elsif device.status == "Now Available" %>
+        <td><%= l(:status_available)%></td>
         <% else %>
         <td><%= device.status %></td>
         <% end %>

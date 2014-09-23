@@ -22,6 +22,8 @@ pl:
   label_unavailable: Urządzenie nie można jeszcze wypożyczyć!
   status_returned: Zwrócony
   status_rented: Wypożyczony
+  status_not_available: Jeszcze niedostępny
+  status_available: Dostępny
   helpers:
     resources_management:
       submit:

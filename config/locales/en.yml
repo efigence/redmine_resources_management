@@ -26,6 +26,8 @@ en:
   label_unavailable: Device is not available to rent yet
   status_returned: Returned
   status_rented: Rented
+  status_not_available: Not available yet
+  status_available: Available
   helpers:
     resources_management:
       submit:
