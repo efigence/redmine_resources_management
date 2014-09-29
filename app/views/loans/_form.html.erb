@@ -5,7 +5,7 @@
 <div class="box tabular">
   <%= labelled_form_for @loan, :url => device_create_loan_url(@device) do |f| %>
     <p class="borrower_name_wrapper">
-      <%= f.select :borrower_name, options_from_collection_for_select(User.sorted, :name, :name), 
+      <%= f.select :borrower_id, options_from_collection_for_select(User.sorted, :id, :name), 
         {:include_blank => true}, { class: 'chosen'} %>
     </p>
     <p>
@@ -16,11 +16,13 @@
       <%= f.text_field :date_of_return,:autocomplete => :off, :class => :datetimepicker %>
     </p>
     <p>
-      <%= f.check_box :email_notify, :checked => true%>
+      <%= f.check_box :email_notify%><br />
+      <%= f.text_field :email_time, size: 4 %><%=l(:field_hours)%>
     </p>
     <p>
       <%= f.check_box :phone_notify %><br />
-      <%= f.text_field :phone %>
+      <%= f.text_field :phone %><br />
+      <%= f.text_field :phone_time,  size: 4 %><%=l(:field_hours)%>
      </p>
       <%= f.hidden_field :status, :value => Loan::STATUS[:unavailable] %>
      <p>

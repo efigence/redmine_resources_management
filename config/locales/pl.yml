@@ -10,18 +10,21 @@ pl:
   label_actions: Akcje
   label_date_of_return: Data zwrotu
   field_email_notify: Powiadom mailowo
-  field_phone_notify: Powiadom telefonicznie
+  field_phone_notify: Powiadom smsem
   field_phone: Telefon
   field_owner: Właściciel
   field_date_from: Dostępne od
   field_date_to: Dostępne do
   field_picture: Zdjęcie
-  field_borrower_name: Wypożyczający
+  field_borrower: Wypożyczający
   field_date_of_hire: Data wypożyczenia
   field_device_id: Urządzenie
   field_date_of_return: Data zwrotu
   field_hire: Wypożyczony
   field_returned: Zwrócony
+  field_email_time: Powiadom
+  field_phone_time: Powiadom
+  field_hours: godz. wcześniej
   label_already_hired: To urządzenie jest aktualnie wypożyczone!
   allowed_to_manage_devices: "Grupy uprawnione do zarządzania urządzeniami:"
   number_of_devices_per_page: Liczba urządzeń na stronie
@@ -43,13 +46,20 @@ pl:
     errors:
       models:
         loan:
-          attributes:
+          attributes:  
+            phone_time: 
+              insert_time: wprowadź czas dla powiadomienia sms!
+            email_time:
+              insert_time: wprowadź czas dla powiadomienia email!
             phone_notify:
               choose_notification: Wybierz przynajmniej jedną metodę powiadomień
+              select_notify_by: musisz zaznaczyć powiadomienie email!
             phone:
               phone_require_if_phone_notify: podaj numer telefonu!
+              must_start_with: powinien zaczynać się od 48
             email_notify:
               choose_notification: Wybierz przynajmniej jedną metodę powiadomień
+              select_notify_by: musisz zaznaczyć powiadomienie smsem!
             date_of_return: 
               greater_then_date_of_hire: musi być wieksza niż data wypożyczenia
               less_then_avalible_date: nie może być większa od daty dostępności!

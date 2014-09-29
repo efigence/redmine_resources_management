@@ -41,7 +41,7 @@
         <% else %>
         <td><%= device.status %></td>
         <% end %>
-      <td><%= device.loans_name %></td>
+      <td><%= User.find(device.loans_name).name unless device.loans_name.nil? %></td>
       <td><%= device.loan_date %></td>
       <td><%= link_to '', edit_device_path(device), :class => 'icon icon-edit' %> | 
       <%= link_to '', device, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'icon icon-del' %></td>

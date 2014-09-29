@@ -4,7 +4,7 @@
 	<table class="list issues">
 	  <tr>
 	    <th>#</th>
-	    <th><%=l(:field_borrower_name)%></th>
+	    <th><%=l(:field_borrower)%></th>
 	    <th><%=l(:field_date_of_hire)%></th>
 	    <th><%=l(:field_date_of_return)%></th>
 	    <th><%=l(:field_status)%></th>
@@ -13,7 +13,7 @@
 	<% @device.loans.all(:order => 'created_at DESC').each do |loan| %>
 		<tr>
 			<td><%= loan.id %></td>
-			<td><%= loan.borrower_name %></td>
+			<td><%= User.find(loan.borrower_id).name %></td>
 			<td><%= loan.date_of_hire.to_date %></td>
 			<td><%= loan.date_of_return.to_datetime.to_formatted_s(:long) %></td>
 			<td><%= loan.status %></td>

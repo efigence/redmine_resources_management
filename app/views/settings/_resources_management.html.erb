@@ -11,6 +11,6 @@
 </p>
 <p>
   <label for="specify_notify_time"><%=l(:send_notify_every_specified_time)%></label>
-    <%= text_field_tag "settings[specify_notify_time]", @settings['specify_notify_time']%> 
+    <%= text_field_tag "settings[specify_notify_time]", @settings['specify_notify_time'], :size => 3%> 
     <em class='info'><%=l(:notify_info_resources)%></em>
 </p>
