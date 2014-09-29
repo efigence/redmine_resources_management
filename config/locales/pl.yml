@@ -2,10 +2,16 @@ pl:
   label_resources_management: Zarządzanie Zasobami
   label_name: Nazwa Urządzenia
   label_owner: Właściciel
+  label_date_from: Dostępne od
+  label_date_to: Dostepne do
   label_picture: Zdjęcie
   label_rental_history: Dziennik wypożyczeń
   label_device_list: Lista urządzeń
   label_actions: Akcje
+  label_date_of_return: Data zwrotu
+  field_email_notify: Powiadom mailowo
+  field_phone_notify: Powiadom telefonicznie
+  field_phone: Telefon
   field_owner: Właściciel
   field_date_from: Dostępne od
   field_date_to: Dostępne do
@@ -14,6 +20,8 @@ pl:
   field_date_of_hire: Data wypożyczenia
   field_device_id: Urządzenie
   field_date_of_return: Data zwrotu
+  field_hire: Wypożyczony
+  field_returned: Zwrócony
   label_already_hired: To urządzenie jest aktualnie wypożyczone!
   allowed_to_manage_devices: "Grupy uprawnione do zarządzania urządzeniami:"
   number_of_devices_per_page: Liczba urządzeń na stronie
@@ -24,6 +32,8 @@ pl:
   status_rented: Wypożyczony
   status_not_available: Jeszcze niedostępny
   status_available: Dostępny
+  send_notify_every_specified_time: "Wyślij przypomnienie co:"
+  notify_info_resources: "np. 4 godziny przed końcem wpożyczenia"
   helpers:
     resources_management:
       submit:
@@ -34,6 +44,12 @@ pl:
       models:
         loan:
           attributes:
+            phone_notify:
+              choose_notification: Wybierz przynajmniej jedną metodę powiadomień
+            phone:
+              phone_require_if_phone_notify: podaj numer telefonu!
+            email_notify:
+              choose_notification: Wybierz przynajmniej jedną metodę powiadomień
             date_of_return: 
               greater_then_date_of_hire: musi być wieksza niż data wypożyczenia
               less_then_avalible_date: nie może być większa od daty dostępności!

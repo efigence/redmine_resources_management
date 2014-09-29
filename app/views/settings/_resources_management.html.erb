@@ -9,3 +9,8 @@
   <label for="number_of_devices_per_page"><%=l(:number_of_devices_per_page)%></label>
     <%= text_field_tag "settings[per_page]", @settings['per_page']%>
 </p>
+<p>
+  <label for="specify_notify_time"><%=l(:send_notify_every_specified_time)%></label>
+    <%= text_field_tag "settings[specify_notify_time]", @settings['specify_notify_time']%> 
+    <em class='info'><%=l(:notify_info_resources)%></em>
+</p>

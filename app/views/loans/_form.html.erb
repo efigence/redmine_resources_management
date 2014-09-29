@@ -12,9 +12,16 @@
       <%= f.text_field :date_of_hire, :value => Date.today, :autocomplete => :off, :class => :datepicker %>
     </p>
     <p>
-      <%= f.label :date_of_return %>
+
       <%= f.text_field :date_of_return,:autocomplete => :off, :class => :datetimepicker %>
     </p>
+    <p>
+      <%= f.check_box :email_notify, :checked => true%>
+    </p>
+    <p>
+      <%= f.check_box :phone_notify %><br />
+      <%= f.text_field :phone %>
+     </p>
       <%= f.hidden_field :status, :value => Loan::STATUS[:unavailable] %>
      <p>
       <%= f.submit t("helpers.resources_management.submit.create_rent") %>

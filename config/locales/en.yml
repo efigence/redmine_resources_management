@@ -8,6 +8,10 @@ en:
   label_rental_history: Jorunal of rents
   label_device_list: Devices list
   label_actions: Actions
+  label_date_of_return: Date of return
+  field_email_notify: Notify by email
+  field_phone_notify: Notify by phone
+  field_phone: Phone number
   field_owner: Owner
   field_date_from: Available from
   field_date_to: Available to
@@ -28,6 +32,8 @@ en:
   status_rented: Rented
   status_not_available: Not available yet
   status_available: Available
+  send_notify_every_specified_time: "Send notification every:"
+  notify_info_resources: 'ex. 4 hours before end of hire'
   helpers:
     resources_management:
       submit:
@@ -38,6 +44,12 @@ en:
       models:
         loan:
           attributes:
+            phone_notify:
+              choose_notification: Choose at least one notifications method
+            phone:
+              phone_require_if_phone_notify: "can't be blank"
+            email_notify:
+              choose_notification: Choose at least one notifications method
             date_of_return: 
               greater_then_date_of_hire: must be greater then date of hire
               less_then_avalible_date: can not be greater then available date!
