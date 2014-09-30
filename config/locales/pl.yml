@@ -22,8 +22,8 @@ pl:
   field_date_of_return: Data zwrotu
   field_hire: Wypożyczony
   field_returned: Zwrócony
-  field_email_time: Powiadom
-  field_phone_time: Powiadom
+  field_email_time: Mail
+  field_phone_time: Sms
   field_hours: godz. wcześniej
   label_already_hired: To urządzenie jest aktualnie wypożyczone!
   allowed_to_manage_devices: "Grupy uprawnione do zarządzania urządzeniami:"
@@ -44,6 +44,8 @@ pl:
         create: Stwórz
   activerecord:
     errors:
+      messages: 
+        not_a_number: 'musi być liczbą'
       models:
         loan:
           attributes:  

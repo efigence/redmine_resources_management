@@ -5,7 +5,7 @@
 <div class="box tabular">
   <%= labelled_form_for @loan, :url => device_create_loan_url(@device) do |f| %>
     <p class="borrower_name_wrapper">
-      <%= f.select :borrower_id, options_from_collection_for_select(User.sorted, :id, :name), 
+      <%= f.select :borrower_id, options_from_collection_for_select(User.sorted, :id, :name, @loan.borrower_id), 
         {:include_blank => true}, { class: 'chosen'} %>
     </p>
     <p>
@@ -16,14 +16,19 @@
       <%= f.text_field :date_of_return,:autocomplete => :off, :class => :datetimepicker %>
     </p>
     <p>
-      <%= f.check_box :email_notify%><br />
-      <%= f.text_field :email_time, size: 4 %><%=l(:field_hours)%>
+      <%= f.check_box :email_notify%>
+     </p>
+     <p class='email_time'> <%= f.text_field :email_time, size: 4, :autocomplete => :off, :value => 0 %> <%=l(:field_hours)%>
     </p>
+    
     <p>
       <%= f.check_box :phone_notify %><br />
-      <%= f.text_field :phone %><br />
-      <%= f.text_field :phone_time,  size: 4 %><%=l(:field_hours)%>
-     </p>
+    </p>
+    <p class="phone_time">
+      <%= f.text_field :phone,:autocomplete => :off %><br />
+      <%= f.text_field :phone_time,  size: 4, :autocomplete => :off, :value => 0 %><%=l(:field_hours)%>
+    </p>
+
       <%= f.hidden_field :status, :value => Loan::STATUS[:unavailable] %>
      <p>
       <%= f.submit t("helpers.resources_management.submit.create_rent") %>
@@ -39,3 +44,15 @@
   <%= javascript_include_tag 'chosen.jquery.min.js', :plugin => 'redmine_resources_management' %>
 <% end %>
 <% end %>
+<script type='text/javascript'>
+  $('#loan_borrower_id').change(function(){
+   var borrower_id = parseInt($('#loan_borrower_id').val());
+    $.ajax({
+      url: "<%= device_get_phone_path %>",
+      dataType: "text",
+      data: {borrower_id: borrower_id}
+    }).done(function(data){
+      $('#loan_phone').val(data);
+    });
+ });
+</script>

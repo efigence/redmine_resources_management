@@ -24,8 +24,8 @@ en:
   field_returned: Returned
   field_who: Currently rented
   field_have_to_date: On loan to
-  field_email_time: 'Notify'
-  field_phone_time: 'Notify'
+  field_email_time: Mail
+  field_phone_time: sms
   field_hours: hours earlier
   label_already_hired: This device is already rented!
   number_of_devices_per_page: Number of devices per page
@@ -44,6 +44,8 @@ en:
         create: Create
   activerecord:
     errors:
+      messages: 
+        not_a_number: 'not a number'
       models:
         loan:
           attributes:

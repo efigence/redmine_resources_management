@@ -6,13 +6,20 @@ class Loan < ActiveRecord::Base
   attr_accessible :device_id, :date_of_hire, :date_of_return, :status, :phone,
     :email_notify, :phone_notify, :borrower_id, :phone_time, :email_time
   belongs_to :device
+  before_create :check_values_without_notify_method
   after_create :prepare_to_send_notification
 
   validates_presence_of :borrower_id, :date_of_hire, :date_of_return, :status
+
+  validates_numericality_of :phone, :if => :phone_notify
+  validates_format_of :phone, with: /\A\+\d{11}\z/i, message: "should be +48 first", :allow_blank => true, :allow_nil => true, :if => :phone_notify
+  validates_numericality_of :phone_time, :allow_nil => false, :allow_blank => false, :if => :phone_notify
+
+  validates_numericality_of :email_time, :allow_nil => false, :allow_blank => false, :if => :email_notify
+
   validate :date_of_return_higher
   validate :time_of_hire
-  validate :notify_validation
-  validate :phone_number_validation
+
 
   def return!
     dev = Device.find(self.device_id)
@@ -30,6 +37,12 @@ class Loan < ActiveRecord::Base
     user = User.find(self.borrower_id)
     notify_by_email(user) if self.email_notify == true
     notify_by_sms(user) if self.phone_notify == true
+  end
+
+  def check_values_without_notify_method
+    self.phone = nil if !self.phone_notify
+    self.phone_time = nil if !self.phone_notify
+    self.email_time = nil if !self.email_notify
   end
 
   def notify_by_email user
@@ -77,44 +90,6 @@ class Loan < ActiveRecord::Base
           errors.add :date_of_return, :less_then_avalible_date
         end
       end
-    end
-  end
-
-  def notify_validation
-    email_notification_validate
-    phone_notification_validate
-  end
-
-  def email_notification_validate
-    if self.email_notify == false && self.phone_notify == false
-      errors.add :email_notify, :choose_notification
-    elsif !self.email_time.nil? && self.email_notify == false
-      validates_acceptance_of :email_notify
-    elsif self.email_notify != false && self.email_time.nil?
-      errors.add :email_time, :insert_time
-    elsif !self.email_time.blank?
-      validates_numericality_of :email_time
-    end
-  end
-
-  def phone_notification_validate
-    if self.phone_notify == false && self.email_notify == false
-      errors.add :phone_notify, :choose_notification
-    elsif self.phone_notify == true && self.phone.nil?
-      errors.add :phone, :phone_require_if_phone_notify
-    elsif self.phone_notify != false && self.phone_time.nil?
-      errors.add :phone_time, :insert_time
-    elsif !self.phone_time.nil? && self.phone_notify == false
-      validates_acceptance_of :phone_notify
-    elsif !self.phone_time.blank?
-      validates_numericality_of :phone_time
-    end
-  end
-
-  def phone_number_validation
-    if !self.phone.blank?
-      validates_numericality_of :phone
-      validates_format_of :phone, { with: /\A\+\d{11}\z/i, message: "should be +48 first" }
     end
   end
 end

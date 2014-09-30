@@ -1,7 +1,7 @@
 class DevicesController < ApplicationController
-  
+
   before_filter :check_permissions, :only => [:new, :edit, :destroy, :create, :update]
-  
+
   def index
     @devices = Device.where('').
       search(params[:search]).
@@ -18,6 +18,13 @@ class DevicesController < ApplicationController
     @loan.device_id = @device.id
   end
 
+  def get_phone
+    loan = Loan.where('borrower_id = ? AND phone IS NOT NULL', params[:borrower_id]).last
+    result = ""
+    result = loan.phone if loan
+    render text: result
+  end
+
   def new
     @device = Device.new
 
@@ -31,13 +38,15 @@ class DevicesController < ApplicationController
   end
 
   def create_loan
+    params[:loan][:date_of_return] = User.current.time_zone.parse(params[:loan][:date_of_return])
+
     @loan = Loan.new(params[:loan])
     @loan.device_id = params[:device_id]
 
     if @loan.save
       @loan.device.change_status!
       redirect_to device_path(@loan.device)
-    else 
+    else
       @device = @loan.device
       render :action => :show
     end
@@ -56,9 +65,9 @@ class DevicesController < ApplicationController
     respond_to do |format|
       format.html do
         if @device.save
-          redirect_to @device, notice: 'Device was successfully created.' 
+          redirect_to @device, notice: 'Device was successfully created.'
         else
-          render action: "new" 
+          render action: "new"
         end
       end
     end
