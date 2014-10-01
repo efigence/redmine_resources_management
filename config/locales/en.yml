@@ -34,11 +34,15 @@ en:
   status_returned: Returned
   status_rented: Rented
   status_not_available: Not available yet
+  status_unavailable: Unavailable
   status_available: Available
   send_notify_every_specified_time: "Send notification every:"
   notify_info_resources: 'ex. 4 hours before end of hire'
+  number_of_loans_per_page: Number of loans per page
   helpers:
     resources_management:
+      clear: Clear
+      return: Return
       submit:
         create_rent: Rent
         create: Create

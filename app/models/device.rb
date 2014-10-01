@@ -15,9 +15,9 @@ class Device < ActiveRecord::Base
 
   def set_default_status
     if self.date_from && self.date_from > Date.today
-      self.status = "Not available yet"
+      self.status = Loan::STATUS[:not_yet]
     else
-      self.status = "Now Available"
+      self.status = Loan::STATUS[:available]
     end
     self.save
   end

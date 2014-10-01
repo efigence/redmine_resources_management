@@ -10,12 +10,13 @@ Redmine::Plugin.register :redmine_resources_management do
   author_url 'http://efigence.com'
 
   menu :top_menu, :devices, { :controller => 'devices', :action => 'index' }, :caption => :label_resources_management,
-    :if => proc {
-      User.current.admin? ||
-      !(User.current.groups.pluck(:id).map(&:to_s) & (Setting.plugin_redmine_resources_management['groups'] || [])).blank?
-    }
+  :if => proc {
+    User.current.admin? ||
+    !(User.current.groups.pluck(:id).map(&:to_s) & (Setting.plugin_redmine_resources_management['groups'] || [])).blank?
+  }
   settings :default => {
-    'per_page' => 10
-    }, 
+    'per_page' => 10,
+    'loans_per_page' => 5,
+  },
     :partial => 'settings/resources_management'
 end

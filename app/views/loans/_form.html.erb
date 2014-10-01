@@ -32,19 +32,21 @@
       <%= f.hidden_field :status, :value => Loan::STATUS[:unavailable] %>
      <p>
       <%= f.submit t("helpers.resources_management.submit.create_rent") %>
+      <%= link_to t("helpers.resources_management.clear"), device_path(@device) %></td>
     </p>
   <% end %>
 </div>
-<% content_for :header_tags do %>
-  <%= stylesheet_link_tag 'application.css', :plugin => 'redmine_resources_management', :media => 'all' %>
-  <%= stylesheet_link_tag 'jquery.datetimepicker.css', :plugin => 'redmine_resources_management', :media => 'all' %>
-  <%= stylesheet_link_tag 'chosen.css', :plugin => 'redmine_resources_management', :media => 'all' %>
-  <%= javascript_include_tag 'application.js', :plugin => 'redmine_resources_management' %>
-  <%= javascript_include_tag 'jquery.datetimepicker.js', :plugin => 'redmine_resources_management' %>
-  <%= javascript_include_tag 'chosen.jquery.min.js', :plugin => 'redmine_resources_management' %>
-<% end %>
+  <% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'application.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+    <%= stylesheet_link_tag 'jquery.datetimepicker.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+    <%= stylesheet_link_tag 'chosen.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+    <%= javascript_include_tag 'application.js', :plugin => 'redmine_resources_management' %>
+    <%= javascript_include_tag 'jquery.datetimepicker.js', :plugin => 'redmine_resources_management' %>
+    <%= javascript_include_tag 'chosen.jquery.min.js', :plugin => 'redmine_resources_management' %>
+  <% end %>
 <% end %>
 <script type='text/javascript'>
+  var last_data = last_data || null;
   $('#loan_borrower_id').change(function(){
    var borrower_id = parseInt($('#loan_borrower_id').val());
     $.ajax({
@@ -52,7 +54,11 @@
       dataType: "text",
       data: {borrower_id: borrower_id}
     }).done(function(data){
-      $('#loan_phone').val(data);
+      var current_value = $('#loan_phone').val();
+      if(current_value === last_data || ( last_data === null && current_value.length == 0 )){ 
+        $('#loan_phone').val(data);
+      }
+      last_data = data;
     });
  });
 </script>

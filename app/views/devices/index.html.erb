@@ -10,7 +10,6 @@
   <% end %>
   <table class="list issues">
     <tr>
-      <th>#</th>
       <th><%= l(:label_picture)%></th>
       <th><%= l(:label_name)%></th>
       <th><%= l(:label_owner)%></th>
@@ -24,27 +23,27 @@
 
   <% @devices.each do |device| %>
     <tr>
-      <td><%= device.id %></td>
-      <td><%= image_tag device.picture.url(:thumb) %></td>
+      <td><%= link_to (image_tag device.picture.url(:thumb)), device %></td>
       <td><b><%= link_to device.name.truncate(20), device, {:title => device.name } %></b></td>
       <td><%= device.owner.truncate(25) %></td>
       <td><%= device.date_from %></td>
       <td><%= device.date_to %></td>
         <% if device.status == Loan::STATUS[:available] %>
-          <td><%= l(:status_returned) %></td>
+          <td><%= l(:status_available) %></td>
         <% elsif device.status == Loan::STATUS[:unavailable] %>
-        <td><%= l(:status_rented) %></td>
-        <% elsif device.status == "Not available yet" %>
+        <td><%= l(:status_unavailable) %></td>
+        <% elsif device.status == Loan::STATUS[:not_yet] %>
         <td><%= l(:status_not_available)%></td>
-        <% elsif device.status == "Now Available" %>
-        <td><%= l(:status_available)%></td>
         <% else %>
         <td><%= device.status %></td>
         <% end %>
       <td><%= User.find(device.loans_name).name unless device.loans_name.nil? %></td>
       <td><%= device.loan_date %></td>
       <td><%= link_to '', edit_device_path(device), :class => 'icon icon-edit' %> | 
-      <%= link_to '', device, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'icon icon-del' %></td>
+      <%= link_to '', device, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'icon icon-del' %><br /><br />
+      <% if device.status == Loan::STATUS[:unavailable]  %>
+      <%= link_to t("helpers.resources_management.return") , return_loan_url(device, device.loans.last) %></td>
+      <% end %>
     </tr>
   <% end %>
   </table>

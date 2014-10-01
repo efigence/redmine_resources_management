@@ -37,8 +37,11 @@ pl:
   status_available: Dostępny
   send_notify_every_specified_time: "Wyślij przypomnienie co:"
   notify_info_resources: "np. 4 godziny przed końcem wpożyczenia"
+  number_of_loans_per_page: Liczba wypożyczeń na stronie
   helpers:
     resources_management:
+      clear: Wyczyść
+      return: Zwrot
       submit:
         create_rent: Wypożycz
         create: Stwórz

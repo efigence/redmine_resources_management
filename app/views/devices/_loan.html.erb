@@ -7,20 +7,20 @@
 	    <th><%=l(:field_borrower)%></th>
 	    <th><%=l(:field_date_of_hire)%></th>
 	    <th><%=l(:field_date_of_return)%></th>
-	    <th><%=l(:field_status)%></th>
 	  </tr>
 
-	<% @device.loans.all(:order => 'created_at DESC').each do |loan| %>
+	<% @device_loans.all(:order => 'created_at DESC').each do |loan| %>
 		<tr>
 			<td><%= loan.id %></td>
 			<td><%= User.find(loan.borrower_id).name %></td>
 			<td><%= loan.date_of_hire.to_date %></td>
 			<td><%= loan.date_of_return.to_datetime.to_formatted_s(:long) %></td>
-			<td><%= loan.status %></td>
-			<% unless loan.status == Loan::STATUS[:available] %> 
-			<td><b><%= link_to 'Return', return_loan_url(@device, loan) %></b></td> 
+			<% unless loan.status == Loan::STATUS[:available]  %> 
+			<td><b><%= link_to t("helpers.resources_management.return"), return_loan_url(@device, loan) %></b></td> 
 			<% end %>
 		</tr>	
 	<% end %>
 	</table>
 <% end %>
+
+<%= will_paginate @device_loans %>

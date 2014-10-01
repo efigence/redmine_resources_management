@@ -1,7 +1,7 @@
 class Loan < ActiveRecord::Base
   unloadable
 
-  STATUS = {:available => 'RETURNED', :unavailable => 'RENTED'}
+  STATUS = {:available => 'AVAILABLE', :unavailable => 'UNAVAILABLE', :not_yet => 'UNAVAILABLE YET'}
 
   attr_accessible :device_id, :date_of_hire, :date_of_return, :status, :phone,
     :email_notify, :phone_notify, :borrower_id, :phone_time, :email_time
