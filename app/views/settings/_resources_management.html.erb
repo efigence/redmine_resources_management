@@ -1,20 +1,42 @@
-<p>
-  <label for="allowed_to_manage_devices"><%=l(:allowed_to_manage_devices)%></label>
-    <%= select_tag "settings[groups][]",
-    options_from_collection_for_select(Group.all.sort, 'id', 'lastname',
-    Setting.plugin_redmine_resources_management[:groups]
-    ), :multiple => true, :id => "groups" %>
-</p>
-<p>
-  <label for="number_of_devices_per_page"><%=l(:number_of_devices_per_page)%></label>
-    <%= text_field_tag "settings[per_page]", @settings['per_page']%>
-</p>
-<p>
-<label for="number_of_loans_per_page"><%=l(:number_of_loans_per_page)%></label>
-    <%= text_field_tag "settings[loans_per_page]", @settings['loans_per_page']%>
-</p>
-<p>
-  <label for="specify_notify_time"><%=l(:send_notify_every_specified_time)%></label>
-    <%= text_field_tag "settings[specify_notify_time]", @settings['specify_notify_time'], :size => 3%> 
-    <em class='info'><%=l(:notify_info_resources)%></em>
-</p>
+<%= javascript_include_tag '/plugin_assets/redmine_resources_management/javascripts/selectize' %>
+<%= stylesheet_link_tag '/plugin_assets/redmine_resources_management/stylesheets/selectize.default.css' %>
+<table>
+  <tbody>
+  <tr>
+    <td>
+      <td><%=l(:allowed_to_manage_devices)%></td>
+       <td> <%= select_tag "settings[groups][]",
+        options_from_collection_for_select(Group.all, 'id', 'lastname',
+         @settings['groups']
+        ), :multiple => true, class: "selectize"  %></td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <td><%=l(:number_of_devices_per_page)%></td>
+        <td><%= text_field_tag "settings[per_page]", @settings['per_page']%></td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <td><%=l(:number_of_loans_per_page)%></td>
+        <td><%= text_field_tag "settings[loans_per_page]", @settings['loans_per_page']%></td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <td><%=l(:send_notify_every_specified_time)%></td>
+      <td>   <%= text_field_tag "settings[specify_notify_time]", @settings['specify_notify_time'], :size => 3%>
+        <em class='info'><%=l(:notify_info_resources)%></em></td>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.selectize').selectize({
+      plugins: ['remove_button']
+    });
+  });
+</script>

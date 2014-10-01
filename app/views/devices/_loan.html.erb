@@ -9,7 +9,7 @@
 	    <th><%=l(:field_date_of_return)%></th>
 	  </tr>
 
-	<% @device_loans.all(:order => 'created_at DESC').each do |loan| %>
+	<% @device.loans.all(:order => 'created_at DESC').each do |loan| %>
 		<tr>
 			<td><%= loan.id %></td>
 			<td><%= User.find(loan.borrower_id).name %></td>
@@ -23,4 +23,4 @@
 	</table>
 <% end %>
 
-<%= will_paginate @device_loans %>
+<%= will_paginate @device.loans.paginate(:per_page => Setting.plugin_redmine_resources_management['loans_per_page'].to_i, :page => params[:page]) %>

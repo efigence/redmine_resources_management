@@ -16,9 +16,6 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
     @loan = Loan.new
     @loan.device_id = @device.id
-    @device_loans = @device.loans
-    @device_loans = @device_loans.
-      paginate(:per_page => Setting.plugin_redmine_resources_management['loans_per_page'].to_i, :page => params[:page])
   end
 
   def get_phone
