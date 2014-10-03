@@ -9,6 +9,8 @@ pl:
   label_device_list: Lista urządzeń
   label_actions: Akcje
   label_date_of_return: Data zwrotu
+  label_date_difference: Powinno być zwrócone
+  label_hours_ago: ' h. temu'
   field_email_notify: Powiadom mailowo
   field_phone_notify: Powiadom smsem
   field_phone: Telefon

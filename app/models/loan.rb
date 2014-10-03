@@ -53,8 +53,8 @@ class Loan < ActiveRecord::Base
     notification.to = user.mail
     notification.kind = :mail
     notification.user_id = user.id
-    notification.subject = "reminder: #{Device.find(self.device_id).name}" + " return reminder !!!"
-    notification.content = "#{Device.find(self.device_id).name} should be returnder today: #{Date.today} on #{self.email_time} hours!!"
+    notification.subject = "#{Device.find(self.device_id).name} " + "should be return for" + " #{self.email_time} h."
+    notification.content = "#{Device.find(self.device_id).name} should be returnder today: #{Date.today} about #{self.email_time} h.!!"
     notification.save
   end
 
@@ -66,7 +66,7 @@ class Loan < ActiveRecord::Base
     notification.to = self.phone
     notification.kind = :sms
     notification.user_id = user.id
-    notification.content = "#{Device.find(self.device_id).name} should be returnder on #{self.email_time} hours!!"
+    notification.content = "#{Device.find(self.device_id).name} should be return for #{self.email_time} h."
     notification.save
   end
 

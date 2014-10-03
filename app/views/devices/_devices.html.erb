@@ -1,21 +1,22 @@
-<% unless Device.where('loans_name = ? AND loan_date < ?', User.current.id.to_s, Date.today).empty? %>
+<% unless Device.where('loans_name = ? AND loan_date < ?', User.current.id.to_s, DateTime.now).empty? %>
   <legend>
   <%=l(:legend_exceded_time) %>
   </legend>
   <table class="list">
     <thead>
       <tr>
-        <th><%=l(:label_date_of_return) %></th>
         <th><%=l(:label_name) %></th>
+        <th><%=l(:label_date_of_return) %></th>
       </tr>
     </thead>
     <tbody>
     </tbody>
-    <% Device.where('loans_name = ? AND loan_date < ?', User.current.id, Date.today).each do |device| %>
+    <% Device.where('loans_name = ? AND loan_date < ?', User.current.id, DateTime.now).each do |device| %>
       <tr>
-        <td><%= device.loan_date%></td>
         <td><%= device.name %></td>
+        <td><%= device.loan_date.strftime("%d/%m/%Y %I:%M")%>  <b><%= TimeDifference.between(DateTime.now, device.loan_date).in_hours %><%=l(:label_hours_ago)%></b></td>
       </tr>
     <% end %>
   </table>
 <% end %>
+<br /><br />

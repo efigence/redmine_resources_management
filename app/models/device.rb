@@ -4,7 +4,6 @@ class Device < ActiveRecord::Base
   attr_accessible :picture, :name, :owner, :date_to, :date_from, :status
 
   after_create :set_default_status
-
   has_many :loans, dependent: :destroy
   has_attached_file :picture, :styles => { :thumb => "100x100>", :medium => "200x200" }, :default_url => "/images/:style/missing.png"
 
@@ -23,7 +22,7 @@ class Device < ActiveRecord::Base
   end
 
   def valid_date_to
-    unless !date_to
+    if date_to
       if date_to < date_from
         errors.add :date_to, :date_to_greater_then_dato_from
       end
@@ -45,5 +44,10 @@ class Device < ActiveRecord::Base
     else
       where('')
     end
+  end
+
+  def run_worker
+    binding.pry
+    Redmine::Hook.call_hook(:after_change_loan_date)
   end
 end

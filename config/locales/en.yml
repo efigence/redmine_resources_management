@@ -8,6 +8,8 @@ en:
   label_rental_history: Jorunal of rents
   label_device_list: Devices list
   label_actions: Actions
+  label_date_difference: Should be return
+  label_hours_ago: ' h ago'
   label_date_of_return: Date of return
   field_email_notify: Notify by email
   field_phone_notify: Notify by sms

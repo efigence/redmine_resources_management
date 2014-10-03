@@ -24,4 +24,5 @@ Redmine::Plugin.register :redmine_resources_management do
 end
 Rails.configuration.to_prepare do
   require 'redmine_resources_management/hooks/redmine_resources_management_hook'
+  require 'redmine_resources_management/hooks/worker_add_blocked_user_from_device_hook'
 end
