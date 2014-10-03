@@ -31,8 +31,10 @@ class Device < ActiveRecord::Base
   end
 
   def change_status!
+    user = User.find(self.loans.last.borrower_id)
+    zone = user.time_zone || Time.zone
     self.status = Loan::STATUS[:unavailable]
-    self.loan_date = self.loans.last.date_of_return
+    self.loan_date = self.loans.last.date_of_return.in_time_zone(zone)
     self.loans_name = self.loans.last.borrower_id
     self.save
   end

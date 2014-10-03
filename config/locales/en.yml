@@ -25,6 +25,7 @@ en:
   field_who: Currently rented
   field_have_to_date: On loan to
   field_email_time: Mail
+  legend_exceded_time: 'Your internet access was blocked because time of loan expired you should immediately return devices:'
   field_phone_time: sms
   field_hours: hours earlier
   label_already_hired: This device is already rented!

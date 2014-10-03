@@ -1,4 +1,6 @@
 # encoding: utf-8
+
+require 'redmine'
 require 'redmine_resources_management'
 
 Redmine::Plugin.register :redmine_resources_management do
@@ -19,4 +21,7 @@ Redmine::Plugin.register :redmine_resources_management do
     'loans_per_page' => 5,
   },
     :partial => 'settings/resources_management'
+end
+Rails.configuration.to_prepare do
+  require 'redmine_resources_management/hooks/redmine_resources_management_hook'
 end
