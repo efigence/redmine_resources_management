@@ -6,9 +6,6 @@ Redmine Resources Manangement Plugin
 
 # License 
 
-  Highcharts  : [License][bb]
-  [bb]: http://creativecommons.org/licenses/by-nc/3.0/legalcode
-  
     Redmine resources management plugin
     Copyright (C) 2014  efigence S.A.
     
