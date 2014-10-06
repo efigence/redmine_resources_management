@@ -1,6 +1,12 @@
 Redmine Resources Management Plugin
 ============================
+This plugin lets you manage your hardware resources
 
+# Instalation
+1. Go to your Redmine installation's plugins/ directory.
+2. `git clone git@github.com:efigence/redmine_resources_management.git && cd ..`
+3. `bundle exec rake redmine:plugins:migrate NAME=redmine_resources_management RAILS_ENV=production`
+4. Restart server
 
 # Requirements
 Developed on Redmine 2.5.2
