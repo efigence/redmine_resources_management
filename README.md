@@ -2,7 +2,8 @@ Redmine Resources Management Plugin
 ============================
 
 
-
+# Requirements
+Developed on Redmine 2.5.2
 
 # License 
 
