@@ -1,19 +1,21 @@
 Redmine Resources Management Plugin
 ============================
-This plugin lets you manage your hardware resources
+This plugin lets you manage your hardware resources.
 
 # Instalation
 1. Go to your Redmine installation's plugins/ directory.
 2. `git clone git@github.com:efigence/redmine_resources_management.git && cd ..`
 3. `bundle exec rake redmine:plugins:migrate NAME=redmine_resources_management RAILS_ENV=production`
 4. Restart server
+5. Before start using make sure that you have [Redmine Notifications Plugin](https://github.com/efigence/redmine_notifications)
 
 # Usage
-It is possible to add/updated/destroy/show devices. 
-Every device has own Jurnal of Loans, you can rent your Device and set when must be returned.
+Create your own Devices list and manage it. 
+Every device has own journal of loans, you can rent your device and set when must be returned, moreover you can set reminder by email or phone with what time ealier you want sent. For more info see paragraph Notifications
+
 
 # Notifications 
-This plugin working with https://github.com/efigence/redmine_notifications to send notifications by smsapi and email.
+This plugin working with  [Redmine Notifications Plugin](https://github.com/efigence/redmine_notifications) to send notifications by smsapi and email.
 
 
 # Requirements
