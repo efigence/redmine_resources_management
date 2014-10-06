@@ -21,6 +21,7 @@ Redmine::Plugin.register :redmine_resources_management do
     'loans_per_page' => 5,
   },
     :partial => 'settings/resources_management'
+  requires_redmine_plugin :redmine_notifications
 end
 Rails.configuration.to_prepare do
   require 'redmine_resources_management/hooks/redmine_resources_management_hook'
