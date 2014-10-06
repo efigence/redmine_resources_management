@@ -15,20 +15,21 @@
 
       <%= f.text_field :date_of_return,:autocomplete => :off, :class => :datetimepicker %>
     </p>
-    <p>
-      <%= f.check_box :email_notify%>
-     </p>
-     <p class='email_time'> <%= f.text_field :email_time, size: 4, :autocomplete => :off, :value => 0 %> <%=l(:field_hours)%>
-    </p>
-    
-    <p>
-      <%= f.check_box :phone_notify %><br />
-    </p>
-    <p class="phone_time">
-      <%= f.text_field :phone,:autocomplete => :off %><br />
-      <%= f.text_field :phone_time,  size: 4, :autocomplete => :off, :value => 0 %><%=l(:field_hours)%>
-    </p>
-
+    <% if Redmine::Plugin.all.collect(&:name).include?("Redmine Notifications plugin") && Setting.plugin_redmine_resources_management['use_notification'] == "1" %>
+      <p>
+        <%= f.check_box :email_notify%>
+       </p>
+       <p class='email_time'> <%= f.text_field :email_time, size: 4, :autocomplete => :off, :value => 0 %> <%=l(:field_hours)%>
+      </p>
+      
+      <p>
+        <%= f.check_box :phone_notify %><br />
+      </p>
+      <p class="phone_time">
+        <%= f.text_field :phone,:autocomplete => :off %><br />
+        <%= f.text_field :phone_time,  size: 4, :autocomplete => :off, :value => 0 %><%=l(:field_hours)%>
+      </p>
+    <% end %>
       <%= f.hidden_field :status, :value => Loan::STATUS[:unavailable] %>
      <p>
       <%= f.submit t("helpers.resources_management.submit.create_rent") %>

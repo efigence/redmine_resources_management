@@ -27,6 +27,9 @@ en:
   field_who: Currently rented
   field_have_to_date: On loan to
   field_email_time: Mail
+  use_notification: Use Notification
+  notifications_not_installed: Redmine Notifications Plugin not detected!
+  use_notification_info: If you want use notification make sure that you have installed Redmine Notifications Plugin and Sidekiq Plugin(see documentation)
   legend_exceded_time: 'Your internet access was blocked because time of loan expired you should immediately return devices:'
   field_phone_time: sms
   field_hours: hours earlier

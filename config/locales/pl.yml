@@ -27,6 +27,9 @@ pl:
   field_email_time: Mail
   field_phone_time: Sms
   field_hours: godz. wcześniej
+  use_notification: Używaj powiadomień
+  notifications_not_installed: Nie wykryto Redmine Notifications Plugin!
+  use_notification_info: "Aby używać powiadomień upewnij się, że jest zainstalowany Redmine Notifications Plugin oraz Sidekiq Plugin(zobacz dokumentacje)"
   legend_exceded_time: 'Dostęp do internetu został zablokowany ponieważ czas wypożyczenia urządzeń minał, powinny zostać niezwłocznie oddane!'
   label_already_hired: To urządzenie jest aktualnie wypożyczone!
   allowed_to_manage_devices: "Grupy uprawnione do zarządzania urządzeniami:"

@@ -55,6 +55,6 @@ class Device < ActiveRecord::Base
   end
 
   def run_worker(user_id)
-    call_hook(:run_worker_for_device_user, {:user_id => user_id })
+    Redmine::Hook.call_hook(:run_worker_for_device_user, {:user_id => user_id })
   end
 end
