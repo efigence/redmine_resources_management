@@ -16,7 +16,7 @@ Every device has own journal of loans, you can rent your device and set when mus
 
 
 # Notifications 
-This plugin working with  [Redmine Notifications Plugin](https://github.com/efigence/redmine_notifications) to send notifications by smsapi and email.
+This plugin working with  [Redmine Notifications Plugin](https://github.com/efigence/redmine_notifications) to send notifications by sms and email.
 
 
 # Requirements
