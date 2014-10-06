@@ -26,11 +26,10 @@
   <tr>
     <td>
       <td><%=l(:send_notify_every_specified_time)%></td>
-      <td>   <%= text_field_tag "settings[specify_notify_time]", @settings['specify_notify_time'], :size => 3%>
+      <td><%= text_field_tag "settings[specify_notify_time]", @settings['specify_notify_time'], :size => 3%>
         <em class='info'><%=l(:notify_info_resources)%></em></td>
     </td>
   </tr>
-
   </tbody>
 </table>
 <script type="text/javascript">

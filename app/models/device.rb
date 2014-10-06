@@ -4,8 +4,10 @@ class Device < ActiveRecord::Base
   attr_accessible :picture, :name, :owner, :date_to, :date_from, :status
 
   after_create :set_default_status
+  after_save :enforce_time_report_worker, on: :update
+
   has_many :loans, dependent: :destroy
-  has_attached_file :picture, :styles => { :thumb => "100x100>", :medium => "200x200" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :picture, :styles => { thumb: '100x100>', medium: '200x200' }, default_url: '/images/:style/missing.png'
 
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
   validates_length_of :name, :owner, {:maximum => 200}
@@ -46,8 +48,13 @@ class Device < ActiveRecord::Base
     end
   end
 
-  def run_worker
-    binding.pry
-    Redmine::Hook.call_hook(:after_change_loan_date)
+  def enforce_time_report_worker
+    reload
+    user_id = self.loans.last.borrower_id
+    run_worker(user_id)
+  end
+
+  def run_worker(user_id)
+    call_hook(:run_worker_for_device_user, {:user_id => user_id })
   end
 end
