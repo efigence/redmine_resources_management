@@ -1,6 +1,7 @@
 Redmine Resources Management Plugin
 ============================
 This plugin lets you manage your hardware resources.
+This plugin work with other plugins, see source code for more informations.
 
 # Instalation
 1. Go to your Redmine installation's plugins/ directory.
