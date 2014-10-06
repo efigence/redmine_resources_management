@@ -8,6 +8,14 @@ This plugin lets you manage your hardware resources
 3. `bundle exec rake redmine:plugins:migrate NAME=redmine_resources_management RAILS_ENV=production`
 4. Restart server
 
+# Usage
+It is possible to add/updated/destroy/show devices. 
+Every device has own Jurnal of Loans, you can rent your Device and set when must be returned.
+
+# Notifications 
+This plugin working with https://github.com/efigence/redmine_notifications to send notifications by smsapi and email.
+
+
 # Requirements
 Developed on Redmine 2.5.2
 
