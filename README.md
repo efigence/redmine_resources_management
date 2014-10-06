@@ -1,4 +1,4 @@
-Redmine Resources Manangement Plugin
+Redmine Resources Management Plugin
 ============================
 
 
