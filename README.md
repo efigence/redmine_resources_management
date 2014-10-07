@@ -9,7 +9,7 @@ This plugin work with other plugins, see source code for more informations.
 2. `git clone git@github.com:efigence/redmine_resources_management.git && cd ..`
 3. `bundle exec rake redmine:plugins:migrate NAME=redmine_resources_management RAILS_ENV=production`
 4. Restart server
-5. If you want to send Notifications before start using make sure that you have [Redmine Notifications Plugin](https://github.com/efigence/redmine_notifications)
+5. If you want to send Notifications, before start using make sure that you have [Redmine Notifications Plugin](https://github.com/efigence/redmine_notifications) and enable this functionality in Admin panel.
 
 # Usage
 Create your own Devices list and manage it. 
