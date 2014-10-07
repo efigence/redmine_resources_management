@@ -28,7 +28,7 @@ en:
   field_have_to_date: On loan to
   field_email_time: Mail
   use_notification: Use Notification
-  notifications_not_installed: Redmine Notifications Plugin not detected!
+  notifications_not_installed: "Redmine Notifications Plugin not detected! See: "
   use_notification_info: If you want use notification make sure that you have installed Redmine Notifications Plugin and Sidekiq Plugin(see documentation)
   legend_exceded_time: 'Your internet access was blocked because time of loan expired you should immediately return devices:'
   field_phone_time: sms
@@ -68,7 +68,7 @@ en:
               select_notify_by: should be checked
             phone:
               phone_require_if_phone_notify: "can't be blank"
-              must_start_with: 'Should start with 48'
+              wrong_format: 'wrong format! Should be +48 and 11 numbers'
             email_notify:
               choose_notification: Choose at least one notifications method
               select_notify_by: should be checked

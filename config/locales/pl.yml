@@ -28,7 +28,7 @@ pl:
   field_phone_time: Sms
   field_hours: godz. wcześniej
   use_notification: Używaj powiadomień
-  notifications_not_installed: Nie wykryto Redmine Notifications Plugin!
+  notifications_not_installed: "Nie wykryto Redmine Notifications Plugin! Odwiedź: " 
   use_notification_info: "Aby używać powiadomień upewnij się, że jest zainstalowany Redmine Notifications Plugin oraz Sidekiq Plugin(zobacz dokumentacje)"
   legend_exceded_time: 'Dostęp do internetu został zablokowany ponieważ czas wypożyczenia urządzeń minał, powinny zostać niezwłocznie oddane!'
   label_already_hired: To urządzenie jest aktualnie wypożyczone!
@@ -67,7 +67,7 @@ pl:
               select_notify_by: musisz zaznaczyć powiadomienie email!
             phone:
               phone_require_if_phone_notify: podaj numer telefonu!
-              must_start_with: powinien zaczynać się od 48
+              wrong_format: 'nieprawidłowy format! Poprawny to: +48 i 11 cyfr!'
             email_notify:
               choose_notification: Wybierz przynajmniej jedną metodę powiadomień
               select_notify_by: musisz zaznaczyć powiadomienie smsem!

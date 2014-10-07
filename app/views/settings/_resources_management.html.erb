@@ -36,7 +36,8 @@
       <td><%= check_box_tag "settings[use_notification]", 1, @settings['use_notification']%>
         <em class='info'><%=l(:use_notification_info)%></em>
         <% if !Redmine::Plugin.all.collect(&:name).include?("Redmine Notifications plugin") %>
-          <em class='info' style="color: red;"><%=l(:notifications_not_installed)%></em></td>     
+          <em class='info' style="color: red;"><%=l(:notifications_not_installed)%>
+          <%= link_to 'Redmine Notifications Plugin', 'https://github.com/efigence/redmine_notifications'%></em></td>     
         <% end %>
      </td>
   </tr>
