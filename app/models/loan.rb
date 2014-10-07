@@ -19,7 +19,8 @@ class Loan < ActiveRecord::Base
   validates_numericality_of :phone, :phone_time, allow_nil: false, allow_blank: false, if: :phone_notify
   validates_numericality_of :email_time, allow_nil: false, allow_blank: false, if: :email_notify
 
-  validate :time_of_hire, :date_of_return_higher, if: :date_of_return
+  validate :date_of_return_higher, if: :date_of_return && :date_of_hire
+  validate :time_of_hire, if: :date_of_return
 
   def return!
     device.status = STATUS[:available]

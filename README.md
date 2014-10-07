@@ -12,7 +12,7 @@ This plugin work with other plugins, see source code for more informations.
 5. If you want to send Notifications, before start using make sure that you have [Redmine Notifications Plugin](https://github.com/efigence/redmine_notifications) and enable this functionality in Admin panel.
 
 # Usage
-Create your own Devices list and manage it. 
+Choose which groups will be allowed to manage devices and create your own list of devices. 
 Every device has own journal of loans, you can rent your device and set when must be returned, moreover you can set reminder by email or phone with what time ealier you want sent. For more info see paragraph Notifications
 
 
