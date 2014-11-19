@@ -12,7 +12,8 @@ class Device < ActiveRecord::Base
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\Z/
   validates_length_of :name, :owner, { maximum: 200 }
   validates_presence_of :name, :owner
-  validate :valid_date_to, if: :date_to && :date_from
+  validate :valid_date_to, if: -> { date_to && date_from }
+
 
   def set_default_status
     if date_from && date_from > Date.today
