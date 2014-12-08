@@ -38,7 +38,7 @@ class DevicesController < ApplicationController
   end
 
   def create_loan
-    params[:loan][:date_of_return] = User.current.time_zone.parse(params[:loan][:date_of_return])
+    params[:loan][:date_of_return] = (User.current.time_zone || Time.zone).parse(params[:loan][:date_of_return])
 
     @loan = Loan.new(params[:loan])
     @loan.device_id = params[:device_id]
