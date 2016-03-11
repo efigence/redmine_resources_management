@@ -1,0 +1,59 @@
+<div class="contextual">
+  <%= link_to 'Statistics', devices_statistics_path, class: 'icon icon-stats' %>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <%= link_to 'New Device', new_device_path, :class => 'icon icon-add' %>
+</div>
+<h1><%= l(:label_device_list) %></h1>
+
+<% if @devices.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <%= form_tag devices_path, :method => :get do |f| %>
+    <%= text_field_tag :search, params[:search], :autocomplete => :off %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
+  <table class="list issues">
+    <tr>
+      <th><%= l(:label_picture)%></th>
+      <th><%= l(:label_name)%></th>
+      <th><%= l(:label_owner)%></th>
+      <th><%= l(:field_date_from)%></th>
+      <th><%= l(:field_date_to)%></th>
+      <th><%= l(:field_status)%></th>
+      <th><%= l(:field_who)%></th>
+      <th><%= l(:field_have_to_date)%></th>
+      <th><%= l(:label_actions)%></th>
+    </tr>
+
+  <% @devices.each do |device| %>
+    <tr>
+      <td><%= link_to (image_tag device.picture.url(:thumb)), device %></td>
+      <td><b><%= link_to device.name.truncate(20), device, {:title => device.name } %></b></td>
+      <td><%= device.owner.truncate(25) %></td>
+      <td><%= device.date_from %></td>
+      <td><%= device.date_to %></td>
+        <% if device.status == Loan::STATUS[:available] %>
+          <td><%= l(:status_available) %></td>
+        <% elsif device.status == Loan::STATUS[:unavailable] %>
+        <td><%= l(:status_unavailable) %></td>
+        <% elsif device.status == Loan::STATUS[:not_yet] %>
+        <td><%= l(:status_not_available)%></td>
+        <% else %>
+        <td><%= device.status %></td>
+        <% end %>
+      <td><%= User.find(device.loans_name).name unless device.loans_name.nil? %></td>
+      <td><%= device.loan_date.in_time_zone('Europe/Warsaw').strftime('%R, %Y-%m-%d') if device.loan_date.present? %></td>
+      <td><%= link_to '', edit_device_path(device), :class => 'icon icon-edit' %> |
+      <%= link_to '', device, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'icon icon-del' %><br /><br />
+      <% if device.status == Loan::STATUS[:unavailable]  %>
+      <%= link_to t("helpers.resources_management.return") , return_loan_url(device, device.loans.last) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+
+<br />
+<% end %>
+
+<%= will_paginate @devices %>
+<div class="contextual"><%= link_to 'New Device', new_device_path, :class => 'icon icon-add' %></div>

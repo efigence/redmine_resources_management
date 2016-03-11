@@ -1,0 +1,68 @@
+<%= error_messages_for @loan %>
+<% if @device.status == Loan::STATUS[:unavailable] %>
+ <p class="nodata"><%= l(:label_already_hired) %></p>
+<% else %>
+<div class="box tabular">
+  <%= labelled_form_for @loan, :url => device_create_loan_url(@device) do |f| %>
+    <p class="borrower_name_wrapper">
+      <%= f.select :borrower_id, options_from_collection_for_select(User.sorted, :id, :name, @loan.borrower_id),
+        {:include_blank => true}, { class: 'chosen'} %>
+    </p>
+    <p>
+      <%= f.text_field :date_of_hire, :value => Date.today, :autocomplete => :off, :class => :datepicker %>
+    </p>
+    <p>
+
+      <%= f.text_field :date_of_return,:autocomplete => :off, :class => :datetimepicker %>
+    </p>
+    <% if Redmine::Plugin.all.collect(&:name).include?("Redmine Notifications plugin") && Setting.plugin_redmine_resources_management['use_notification'] == "1" %>
+      <p>
+        <%= f.check_box :email_notify%>
+       </p>
+       <p class='email_time'> <%= f.text_field :email_time, size: 4, :autocomplete => :off, :value => 0 %> <%=l(:field_hours_earlier)%>
+      </p>
+
+      <p>
+        <%= f.check_box :phone_notify %><br />
+      </p>
+      <p class="phone_time">
+        <%= f.text_field :phone,:autocomplete => :off %><br />
+        <%= f.text_field :phone_time,  size: 4, :autocomplete => :off, :value => 0 %><%=l(:field_hours_earlier)%>
+      </p>
+    <% end %>
+    <p>
+      <%= f.text_area :description, :autocomplete => :off, :rows => 3 %>
+    </p>
+      <%= f.hidden_field :status, :value => Loan::STATUS[:unavailable] %>
+     <p>
+      <%= f.submit t("helpers.resources_management.submit.create_rent") %>
+      <%= link_to t("helpers.resources_management.clear"), device_path(@device) %></td>
+    </p>
+  <% end %>
+</div>
+  <% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'application.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+    <%= stylesheet_link_tag 'jquery.datetimepicker.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+    <%= stylesheet_link_tag 'chosen.css', :plugin => 'redmine_resources_management', :media => 'all' %>
+    <%= javascript_include_tag 'application.js', :plugin => 'redmine_resources_management' %>
+    <%= javascript_include_tag 'jquery.datetimepicker.js', :plugin => 'redmine_resources_management' %>
+    <%= javascript_include_tag 'chosen.jquery.min.js', :plugin => 'redmine_resources_management' %>
+  <% end %>
+<% end %>
+<script type='text/javascript'>
+  var last_data = last_data || null;
+  $('#loan_borrower_id').change(function(){
+   var borrower_id = parseInt($('#loan_borrower_id').val());
+    $.ajax({
+      url: "<%= device_get_phone_path %>",
+      dataType: "text",
+      data: {borrower_id: borrower_id}
+    }).done(function(data){
+      var current_value = $('#loan_phone').val();
+      if(current_value === last_data || ( last_data === null && current_value.length == 0 )){
+        $('#loan_phone').val(data);
+      }
+      last_data = data;
+    });
+ });
+</script>

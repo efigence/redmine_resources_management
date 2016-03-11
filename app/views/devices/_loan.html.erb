@@ -1,0 +1,29 @@
+<% if @loans.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <table class="list issues">
+    <tr>
+      <th><%=l(:field_borrower)%></th>
+      <th><%=l(:field_date_of_hire)%></th>
+      <th colspan="2"><%=l(:field_date_of_return)%></th>
+    </tr>
+
+    <% @loans.all(:order => 'created_at DESC').each do |loan| %>
+      <tr>
+        <td><%= User.find(loan.borrower_id).name %></td>
+        <td><%= loan.date_of_hire.to_date %></td>
+        <td><%= loan.date_of_return.to_datetime.to_formatted_s(:long) %></td>
+        <% unless loan.status == Loan::STATUS[:available]  %>
+          <td><b><%= link_to t("helpers.resources_management.return"), return_loan_url(@device, loan) %></b></td>
+        <% end %>
+      </tr>
+      <% if loan.description %>
+        <tr>
+          <td colspan="4" class="description"> <%= loan.description %> </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>
+
+<%= will_paginate @loans %>

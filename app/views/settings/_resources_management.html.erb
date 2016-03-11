@@ -1,0 +1,54 @@
+<%= javascript_include_tag '/plugin_assets/redmine_resources_management/javascripts/selectize' %>
+<%= stylesheet_link_tag '/plugin_assets/redmine_resources_management/stylesheets/selectize.default.css' %>
+<table>
+  <tbody>
+  <tr>
+    <td>
+      <td><%=l(:allowed_to_manage_devices)%></td>
+       <td> <%= select_tag "settings[groups][]",
+        options_from_collection_for_select(Group.all, 'id', 'lastname',
+         @settings['groups']
+        ), :multiple => true, class: "selectize"  %></td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <td><%=l(:number_of_devices_per_page)%></td>
+        <td><%= text_field_tag "settings[per_page]", @settings['per_page']%></td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <td><%=l(:number_of_loans_per_page)%></td>
+        <td><%= text_field_tag "settings[loans_per_page]", @settings['loans_per_page']%></td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <td><%=l(:send_notify_every_specified_time)%></td>
+      <td><%= text_field_tag "settings[specify_notify_time]", @settings['specify_notify_time'], :size => 3%>
+        <em class='info'><%=l(:notify_info_resources)%></em></td>
+    </td>
+  </tr>
+   <tr>
+    <td>
+      <td><%=l(:use_notification)%></td>
+      <td><%= check_box_tag "settings[use_notification]", 1, @settings['use_notification']%>
+        <em class='info'><%=l(:use_notification_info)%></em>
+        <% if !Redmine::Plugin.all.collect(&:name).include?("Redmine Notifications plugin") %>
+          <em class='info' style="color: red;"><%=l(:notifications_not_installed)%>
+          <%= link_to 'Redmine Notifications Plugin', 'https://github.com/efigence/redmine_notifications'%></em></td>     
+        <% end %>
+     </td>
+  </tr>
+  </tbody>
+</table>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.selectize').selectize({
+      plugins: ['remove_button']
+    });
+  });
+
+
+</script>

@@ -1,0 +1,24 @@
+<%= error_messages_for 'device' %>
+
+<div class="box tabular">
+
+  <%= labelled_form_for(@device) do |f| %>
+
+    <p><%= f.text_field :name, :autocomplete => :off %></p>
+    <p><%= f.text_field :owner, :autocomplete => :off %></p>
+    <p>
+      <%= f.text_field :date_from, :autocomplete => :off %>
+      <%= calendar_for('device_date_from') %>
+    </p>
+    <p>
+      <%= f.text_field :date_to, :autocomplete => :off %>
+      <%= calendar_for('device_date_to') %>
+    </p>
+    <p><%= f.file_field :picture %></p>
+
+    <div class="actions">
+      <%= f.submit t("helpers.resources_management.submit.create") %>
+    </div>
+
+  <% end %>
+</div>

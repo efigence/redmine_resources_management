@@ -1,0 +1,11 @@
+.borrower_name_wrapper{
+	overflow: visible !important;
+}
+
+.description{
+  text-align: left;
+}
+
+div.box{
+  overflow: initial;
+}

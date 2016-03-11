@@ -1,0 +1,24 @@
+<%= link_to 'Edit', edit_device_path(@device), :class => 'icon icon-edit' %> |
+<%= link_to 'Back', devices_path %>
+<p id="notice"><%= notice %></p>
+<h3><%= @device.status %></h3>
+<div class="box tabular">
+  <table class="attributes">
+    <%= device_fields_rows do |rows|
+      rows.left l(:field_name), h(@device.name)
+      rows.left l(:field_owner), h(@device.owner)
+      rows.left l(:field_date_from), h(@device.date_from), :class => 'start-date'
+      rows.left l(:field_date_to), h(@device.date_to), :class => 'due-date'
+      rows.right l(:field_picture), h(image_tag @device.picture.url(:medium)), rowspan: 4
+    end %> 
+  </table>
+</div>
+<hr>
+<% if !@device.date_from.nil? && @device.date_from > Date.today %>
+	<p class="nodata"><%= l(:label_unavailable) %></p>
+<% else %>
+	<%= render partial: 'loans/form' %>
+<% end %>
+<hr>
+<h3><%=l(:label_rental_history)%> </h3>
+<%= render partial: 'devices/loan' %>

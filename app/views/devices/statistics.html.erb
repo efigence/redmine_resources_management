@@ -1,0 +1,26 @@
+<p style="float:right;">
+  <%= link_to 'Download CSV', devices_statistics_path(format: 'csv', sort_by: params[:sort_by]) %>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <%= link_to 'Back', devices_path %>
+</p>
+<h1>Device statistics</h1>
+<table class="list issues">
+  <thead>
+    <tr>
+      <th><%= '#' %></th>
+      <th><%= link_to l(:label_name), { sort_by: 'name' } %></th>
+      <th><%= link_to 'Loans count', { sort_by: 'loans_count' } %></th>
+      <th><%= link_to 'Top loaner', { sort_by: 'top' } %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @devices.each.with_index do |device, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= device[:name] %></td>
+        <td><%= device[:count] %></td>
+        <td><%= device[:top].firstname + ' ' + device[:top].lastname + ' (' + device[:top_count].to_s + ')' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
