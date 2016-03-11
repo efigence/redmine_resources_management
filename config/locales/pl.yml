@@ -29,6 +29,7 @@ pl:
   field_hours_earlier: godz. wcześniej
   use_notification: Używaj powiadomień
   notifications_not_installed: "Nie wykryto Redmine Notifications Plugin! Odwiedź: "
+  field_hours: godz. wcześniej
   use_notification_info: "Aby używać powiadomień upewnij się, że jest zainstalowany Redmine Notifications Plugin oraz Sidekiq Plugin(zobacz dokumentacje)"
   legend_exceded_time: 'Dostęp do internetu został zablokowany ponieważ czas wypożyczenia urządzeń minał, powinny zostać niezwłocznie oddane!'
   label_already_hired: To urządzenie jest aktualnie wypożyczone!
@@ -53,12 +54,21 @@ pl:
         create: Stwórz
   activerecord:
     errors:
+<<<<<<< HEAD
       messages:
         not_a_number: 'musi być liczbą'
       models:
         loan:
           attributes:
             phone_time:
+=======
+      messages:
+        not_a_number: 'musi być liczbą'
+      models:
+        loan:
+          attributes:
+            phone_time:
+>>>>>>> f5da84e1ee9eaee38aa974f9efa187d568486501
               insert_time: wprowadź czas dla powiadomienia sms!
             email_time:
               insert_time: wprowadź czas dla powiadomienia email!
@@ -71,10 +81,19 @@ pl:
             email_notify:
               choose_notification: Wybierz przynajmniej jedną metodę powiadomień
               select_notify_by: musisz zaznaczyć powiadomienie smsem!
+<<<<<<< HEAD
             date_of_return:
+=======
+            date_of_return:
+>>>>>>> f5da84e1ee9eaee38aa974f9efa187d568486501
               greater_then_date_of_hire: musi być wieksza niż data wypożyczenia
               less_then_avalible_date: nie może być większa od daty dostępności!
         device:
           attributes:
+<<<<<<< HEAD
             date_to:
               date_to_greater_then_dato_from: musi być wieksza niż data do
+=======
+            date_to:
+              date_to_greater_then_dato_from: musi być wieksza niż data do
+>>>>>>> f5da84e1ee9eaee38aa974f9efa187d568486501
