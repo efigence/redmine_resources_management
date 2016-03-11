@@ -20,7 +20,7 @@ class DevicesController < ApplicationController
   end
 
   def get_phone
-    loan = Loan.where('borrower_id = ? AND phone IS NOT NULL', params[:borrower_id]).last
+    loan = Loan.where(borrower_id: params[:borrower_id]).last
     result = ''
     result = loan.phone if loan
     render text: result
@@ -39,6 +39,8 @@ class DevicesController < ApplicationController
   end
 
   def create_loan
+    @device = Device.find(params[:device_id])
+    @loans = @device.loans.paginate(page: params[:page], per_page: Setting.plugin_redmine_resources_management['loans_per_page'].to_i)
     params[:loan][:date_of_return] = (User.current.time_zone || Time.zone).parse(params[:loan][:date_of_return])
 
     @loan = Loan.new(params[:loan])
