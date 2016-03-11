@@ -55,20 +55,12 @@ en:
         create: Create
   activerecord:
     errors:
-<<<<<<< HEAD
       messages:
-=======
-      messages:
->>>>>>> f5da84e1ee9eaee38aa974f9efa187d568486501
         not_a_number: 'not a number'
       models:
         loan:
           attributes:
-<<<<<<< HEAD
             phone_time:
-=======
-            phone_time:
->>>>>>> f5da84e1ee9eaee38aa974f9efa187d568486501
               insert_time: please insert time for phone!
             email_time:
               insert_time: please insert time for email!
@@ -81,19 +73,10 @@ en:
             email_notify:
               choose_notification: Choose at least one notifications method
               select_notify_by: should be checked
-<<<<<<< HEAD
             date_of_return:
-=======
-            date_of_return:
->>>>>>> f5da84e1ee9eaee38aa974f9efa187d568486501
               greater_then_date_of_hire: must be greater then date of hire
               less_then_avalible_date: can not be greater then available date!
         device:
           attributes:
-<<<<<<< HEAD
             date_to:
               date_to_greater_then_dato_from: must be greater then date from
-=======
-            date_to:
-              date_to_greater_then_dato_from: must be greater then date from
->>>>>>> f5da84e1ee9eaee38aa974f9efa187d568486501
