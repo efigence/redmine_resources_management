@@ -20,7 +20,7 @@ class DevicesController < ApplicationController
   end
 
   def get_phone
-    loan = Loan.where(borrower_id: params[:borrower_id]).last
+    loan = Loan.where('borrower_id = ? AND phone IS NOT NULL', params[:borrower_id]).last
     result = ''
     result = loan.phone if loan
     render text: result

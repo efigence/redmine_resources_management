@@ -50,18 +50,22 @@
 <% end %>
 <script type='text/javascript'>
   var last_data = null;
-  $('#loan_borrower_id').change(function() {
-    var borrower_id = parseInt($('#loan_borrower_id').val());
-    $.ajax({
-      url: "<%= device_get_phone_path %>",
-      dataType: "text",
-      data: {borrower_id: borrower_id}
-    }).done(function(data) {
-      var current_value = $('#loan_phone').val() || '';
-      if (current_value === last_data || (last_data === null && current_value.length == 0)) {
-        $('#loan_phone').val(data);
-      }
-      last_data = data;
+  var current_value = $('#loan_phone').val();
+  if (current_value !== null && current_value.length != 0) {
+    $('#loan_borrower_id').change(function() {
+      debugger
+      var borrower_id = parseInt($('#loan_borrower_id').val());
+      $.ajax({
+        url: "<%= device_get_phone_path %>",
+        dataType: "text",
+        data: {borrower_id: borrower_id}
+      }).done(function(data) {
+        current_value = $('#loan_phone').val();
+        if (current_value === last_data || (last_data === null && current_value.length == 0)) {
+          $('#loan_phone').val(data);
+        }
+        last_data = data;
+      });
     });
-  });
+  }
 </script>
