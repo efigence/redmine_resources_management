@@ -3,8 +3,7 @@ gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem 'sidekiq'
 gem 'time_difference'
-require 'string_case_pl'
-require 'string_cmp_pl'
+gem 'string_case_pl'
 
 group :development do
   gem 'pry'
