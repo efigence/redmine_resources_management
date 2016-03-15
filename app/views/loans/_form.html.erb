@@ -19,14 +19,14 @@
       <p>
         <%= f.check_box :email_notify%>
        </p>
-       <p class='email_time'> <%= f.text_field :email_time, size: 4, :autocomplete => :off, :value => 0 %> <%=l(:field_hours_earlier)%>
+       <p class='email_time'> <%= f.text_field :email_time, size: 4, :autocomplete => :off, :value => 0 %> <%=l(:field_hours)%>
       </p>
       <p>
         <%= f.check_box :phone_notify %><br />
       </p>
       <p class="phone_time">
         <%= f.text_field :phone, :autocomplete => :off %><br />
-        <%= f.text_field :phone_time,  size: 4, :autocomplete => :off, :value => 0 %><%=l(:field_hours_earlier)%>
+        <%= f.text_field :phone_time,  size: 4, :autocomplete => :off, :value => 0 %><%=l(:field_hours)%>
       </p>
     <% end %>
       <p>

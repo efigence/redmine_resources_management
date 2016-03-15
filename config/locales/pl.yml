@@ -26,7 +26,6 @@ pl:
   field_returned: Zwrócony
   field_email_time: Mail
   field_phone_time: Sms
-  field_hours_earlier: godz. wcześniej
   use_notification: Używaj powiadomień
   notifications_not_installed: "Nie wykryto Redmine Notifications Plugin! Odwiedź: "
   field_hours: godz. wcześniej
