@@ -3,8 +3,7 @@ class DevicesController < ApplicationController
   before_filter :check_permissions, only: [:new, :edit, :destroy, :create, :update, :statistics]
 
   def index
-    @devices = Device.where('')
-                     .search(params[:search])
+    @devices = Device.search(params[:search])
                      .paginate(per_page: Setting.plugin_redmine_resources_management['per_page'].to_i, page: params[:page])
 
     respond_to do |format|

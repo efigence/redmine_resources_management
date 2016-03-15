@@ -3,7 +3,7 @@ gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem 'sidekiq'
 gem 'time_difference'
-gem 'ffi-locale', git: 'https://github.com/k3rni/ffi-locale.git'
+gem 'ffi-locale'
 
 group :development do
   gem 'pry'
