@@ -26,7 +26,7 @@ pl:
   field_returned: Zwrócony
   field_email_time: Mail
   field_phone_time: Sms
-  field_hours: hours earlier
+  field_hours_earlier: godz. wcześniej
   use_notification: Używaj powiadomień
   notifications_not_installed: "Nie wykryto Redmine Notifications Plugin! Odwiedź: "
   use_notification_info: "Aby używać powiadomień upewnij się, że jest zainstalowany Redmine Notifications Plugin oraz Sidekiq Plugin(zobacz dokumentacje)"
