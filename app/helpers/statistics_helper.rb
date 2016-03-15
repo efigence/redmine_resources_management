@@ -4,7 +4,7 @@ module StatisticsHelper
     when 'name'
       devices_hash.sort_by { |k, v| k[:name].downcase }
     when 'top'
-      devices_hash.sort_by { |k, v| FFILocale.strxfrm(k[:top][:firstname]) }
+      devices_hash.sort_by { |k, v| k[:top][:firstname] }
     else
       devices_hash.sort_by { |k, v| k[:count].to_i * (-1) }
     end

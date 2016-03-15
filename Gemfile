@@ -3,7 +3,8 @@ gem 'paperclip'
 gem 'will_paginate', '~> 3.0'
 gem 'sidekiq'
 gem 'time_difference'
-gem 'ffi-locale'
+require 'string_case_pl'
+require 'string_cmp_pl'
 
 group :development do
   gem 'pry'

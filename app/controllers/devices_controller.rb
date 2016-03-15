@@ -100,7 +100,6 @@ class DevicesController < ApplicationController
   end
 
   def statistics
-    # @devices = Device.eager_load(loans: :user)
     @devices = Loan.joins(:user, :device)
                    .select('count(loans.id) as loans_count, devices.name, users.id as borrower_id')
                    .group('borrower_id')
@@ -111,11 +110,11 @@ class DevicesController < ApplicationController
                      { name: elem[1][0].name, count: elem[1].collect{ |w| w.loans_count }.sum, top: elem[1][0].user, top_count: elem[1][0].loans_count }
                    end
     @devices = sorted_by(@devices)
-    # binding.pry
-    # @devices = Device.get_sorted_by(params[:sort_by])
+
     respond_to do |format|
       format.html
       format.csv { send_data get_csv(@devices) }
+      format.xlsx
     end
   end
 
@@ -137,9 +136,9 @@ class DevicesController < ApplicationController
     Setting.plugin_redmine_resources_management[:groups] || []
   end
 
-  def get_csv(devices_hash)
+  def get_csv(devices_hash, options = {})
     column_names = ['#'] + devices_hash.first.keys
-    s = CSV.generate do |csv|
+    s = CSV.generate(options) do |csv|
       csv << column_names
       devices_hash.each.with_index do |elem, index|
         csv << [(index + 1).to_s] + elem.values
