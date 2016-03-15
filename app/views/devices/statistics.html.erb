@@ -1,9 +1,9 @@
 <p style="float:right;">
-  <%= link_to 'Download XLSX', devices_statistics_path(format: 'xlsx', sort_by: params[:sort_by]) %>
+  <%= link_to (l(:label_download_stats) + ' XLSX'), devices_statistics_path(format: 'xlsx', sort_by: params[:sort_by]) %>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <%= link_to 'Download CSV', devices_statistics_path(format: 'csv', sort_by: params[:sort_by]) %>
+  <%= link_to (l(:label_download_stats) + ' CSV'), devices_statistics_path(format: 'csv', sort_by: params[:sort_by]) %>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <%= link_to 'Back', devices_path %>
+  <%= link_to l(:label_back_to_stats), devices_path %>
 </p>
 <h1>Device statistics</h1>
 <table class="list issues">
@@ -11,8 +11,8 @@
     <tr>
       <th><%= '#' %></th>
       <th><%= link_to l(:label_name), { sort_by: 'name' } %></th>
-      <th><%= link_to 'Loans count', { sort_by: 'loans_count' } %></th>
-      <th><%= link_to 'Top loaner', { sort_by: 'top' } %>
+      <th><%= link_to l(:label_loans_count), { sort_by: 'loans_count' } %></th>
+      <th><%= link_to l(:label_top_loaner), { sort_by: 'top' } %>
     </tr>
   </thead>
   <tbody>

@@ -79,3 +79,8 @@ en:
           attributes:
             date_to:
               date_to_greater_then_dato_from: must be greater then date from
+
+  label_download_stats: Download
+  label_back_to_stats: Back
+  label_loans_count: Loans count
+  label_top_loaner: Top loaner

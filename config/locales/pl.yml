@@ -78,3 +78,8 @@ pl:
           attributes:
             date_to:
               date_to_greater_then_dato_from: musi być wieksza niż data do
+
+  label_download_stats: Pobierz
+  label_back_to_stats: Powrót
+  label_loans_count: Ilość wypożyczeń
+  label_top_loaner: Najczęściej wypożyczał

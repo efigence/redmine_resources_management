@@ -1,3 +1,6 @@
+require 'string_case_pl'
+require 'string_cmp_pl'
+
 module StatisticsHelper
   def sorted_by(devices_hash)
     case params[:sort_by]

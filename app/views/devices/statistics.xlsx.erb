@@ -8,18 +8,16 @@
     <Table>
       <Row>
         <Cell><Data ss:Type="String">#</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Loan count</Data></Cell>
-        <Cell><Data ss:Type="String">Top loaner</Data></Cell>
-        <Cell><Data ss:Type="String">Top loaners count</Data></Cell>
+        <Cell><Data ss:Type="String"><%= l(:label_name) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= l(:label_loans_count) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= l(:label_top_loaner) %></Data></Cell>
       </Row>
     <% @devices.each.with_index do |device, index| %>
       <Row>
         <Cell><Data ss:Type="Number"><%= index + 1 %></Data></Cell>
         <Cell><Data ss:Type="String"><%= device[:name] %></Data></Cell>
         <Cell><Data ss:Type="Number"><%= device[:count] %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= device[:top].firstname + ' ' + device[:top].lastname %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= device[:top_count] %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= device[:top].firstname + ' ' + device[:top].lastname + ' (' + device[:top_count].to_s + ')' %></Data></Cell>
       </Row>
     <% end %>
     </Table>
