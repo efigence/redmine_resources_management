@@ -114,7 +114,7 @@ class DevicesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data get_csv(@devices) }
-      format.xlsx
+      format.xlsx { send_data(get_xlsx(@devices), type: 'application/xlsx', filename: 'statistics.xlsx') }
     end
   end
 
@@ -144,5 +144,17 @@ class DevicesController < ApplicationController
         csv << [(index + 1).to_s] + elem.values
       end
     end
+  end
+
+  def get_xlsx(devices_hash)
+    p = Axlsx::Package.new
+    p.workbook.add_worksheet(name: "Statistics") do |sheet|
+      sheet.add_row ['#', l(:label_name), l(:label_loans_count), l(:label_top_loaner)]
+      devices_hash.each.with_index do |device, index|
+        sheet.add_row [(index + 1), device[:name], device[:count], (device[:top].firstname + ' ' + device[:top].lastname + ' (' + device[:top_count].to_s + ')')]
+      end
+    end
+    p.use_shared_strings = true
+    p.to_stream.read
   end
 end
